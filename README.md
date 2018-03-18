@@ -12,7 +12,7 @@ This course considers the many linkages between public preferences and social po
 
 A primary project during the course is to replicate the work of Sides and Citrin (2007) and Emmenegger and Klemmensen (2013) using the ESS.
 
-## STATA PROJECT
+## STATA PROJECT:
 Users can run all course code using my Stata project [essppsp.stpr], the project cotains the master file [essppsp.do] which executes all the do files described below and downloadable above. 
 
 ### WORKING WITH THE ESS
