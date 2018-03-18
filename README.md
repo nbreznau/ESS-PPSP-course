@@ -16,26 +16,26 @@ Berg, Justin Allen. 2015. “Explaining Attitudes toward Immigrants and Immigrat
 
 Boeri, Tito. 2010. “Immigration to the Land of Redistribution.” _Economica_ 77(308):651–87.
 
-Brady, David and Ryan Finnigan. 2014. “Does Immigration Undermine Public Support for Social Policy?” American Sociological Review 79(1):17–42.
+Brady, David and Ryan Finnigan. 2014. “Does Immigration Undermine Public Support for Social Policy?” _American Sociological Review_ 79(1):17–42.
 
-Burgoon, Brian. 2014. “Immigration, Integration, and Support for Redistribution in Europe.” World Politics 66(3):365–405.
+Burgoon, Brian. 2014. “Immigration, Integration, and Support for Redistribution in Europe.” _World Politics_ 66(3):365–405.
 
-Dancygier, Rafaela M. and David D. Laitin. 2014. “Immigration into Europe: Economic Discrimination, Violence, and Public Policy.” Annual Review of Political Science 17(1).
+Dancygier, Rafaela M. and David D. Laitin. 2014. “Immigration into Europe: Economic Discrimination, Violence, and Public Policy.” _Annual Review of Political Science_ 17(1).
 
-Eger, Maureen A. and Andrea Bohman. 2016. “The Political Consequences of Contemporary Immigration.” Sociology Compass 10(10):877–92.
+Eger, Maureen A. and Andrea Bohman. 2016. “The Political Consequences of Contemporary Immigration.” _Sociology Compass_ 10(10):877–92.
 
-Emmenegger, Patrick and Robert Klemmensen. 2013. “What Motivates You? The Relationship between Preferences for Redistribution and Attitudes toward Immigration.” Comparative Politics 45(2):227–46.
+Emmenegger, Patrick and Robert Klemmensen. 2013. “What Motivates You? The Relationship between Preferences for Redistribution and Attitudes toward Immigration.” _Comparative Politics_ 45(2):227–46.
 
-Golder, Matt. 2016. “Far Right Parties in Europe.” Annual Review of Political Science 19(1):477–97.
+Golder, Matt. 2016. “Far Right Parties in Europe.” _Annual Review of Political Science_ 19(1):477–97.
 
-Hainmueller, Jens and Daniel J. Hopkins. 2014. “Public Attitudes Toward Immigration.” Annual Review of Political Science 17(1):225–49.
+Hainmueller, Jens and Daniel J. Hopkins. 2014. “Public Attitudes Toward Immigration.” _Annual Review of Political Science_ 17(1):225–49.
 
-Herda, Daniel. 2010. “How Many Immigrants? Foreign-Born Population Innumeracy in Europe.” Public Opinion Quarterly 74(4):674–95.
+Herda, Daniel. 2010. “How Many Immigrants? Foreign-Born Population Innumeracy in Europe.” _Public Opinion Quarterly_ 74(4):674–95.
 
-Mewes, Jan and Steffen Mau. 2013. “Globalization, Socio-Economic Status and Welfare Chauvinism: European Perspectives on Attitudes toward the Exclusion of Immigrants.” International Journal of Comparative Sociology 54(3).
+Mewes, Jan and Steffen Mau. 2013. “Globalization, Socio-Economic Status and Welfare Chauvinism: European Perspectives on Attitudes toward the Exclusion of Immigrants.” _International Journal of Comparative Sociology_ 54(3).
 
-OECD/EU. 2015. Indicators of Immigrant Integration, 2015: Settling In. Paris.
+OECD/EU. 2015. _Indicators of Immigrant Integration, 2015: Settling In_. Paris.
 
-Röth, Leonce, Alexandre Afonso, and Dennis C. Spies. 2017. “The Impact of Populist Radical Right Parties on Socio-Economic Policies.” European Political Science Review 1–26.
+Röth, Leonce, Alexandre Afonso, and Dennis C. Spies. 2017. “The Impact of Populist Radical Right Parties on Socio-Economic Policies.” _European Political Science Review_ 1–26.
 
-Sides, John and Jack Citrin. 2007. “European Opinion about Immigration: The Role of Identities, Interests and Information.” British Journal of Political Science 37(3):477–504.
+Sides, John and Jack Citrin. 2007. “European Opinion about Immigration: The Role of Identities, Interests and Information.” _British Journal of Political Science_ 37(3):477–504.
