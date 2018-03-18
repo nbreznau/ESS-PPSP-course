@@ -20,7 +20,9 @@ The users also need the Quality of Government (QoG) OECD time series data file [
 Users can access the code for playing with and learning Stata and the ESS data as we've done in class via [ess_exercises.do](https://github.com/nbreznau/ESS-PPSP-course/blob/master/ess_exercises.do).
 
 ## REPLICATION PROJECT
-The users will need to download the single-wave file ESS1 and for expanding the project the ESS7.
+The users will need to download the single-wave file ESS1 and for expanding the project the ESS7. The the [merge_ess1p7.do](https://github.com/nbreznau/ESS-PPSP-course/blob/master/merge_ess1p7.do) file puts them together. 
+
+The 
 
 ## LITERATURE:
 Bay, Ann-Helén and Axel West Pedersen. 2006. “The Limits of Social Solidarity: Basic Income, Immigration and the Legitimacy of the Universal Welfare State.” _Acta Sociologica_ 49(4):419–36.
