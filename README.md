@@ -10,7 +10,7 @@ This course considers the many linkages between public preferences and social po
 A primary project during the course is to replicate the work of Sides and Citrin (2007) and Emmenegger and Klemmensen (2013) using the ESS.
 
 ## WORKING WITH THE ESS
-The users will need to download the file [ESS1-7e01.dta](http://www.europeansocialsurvey.org/downloadwizard/) with all countries and variables selected to follow the course structure. The file is then cleaned using the Cleaning Appendix [cleaness.do] mostly to reduce its size.
+The users will need to download the file [ESS1-7e01.dta](http://www.europeansocialsurvey.org/downloadwizard/) with all countries and variables selected to follow the course structure. The file is then cleaned using the Cleaning Appendix [cleaness.do](docs/cleaness.do) mostly to reduce its size.
 
 ## REPLICATION PROJECT
 The users will need to download the file
