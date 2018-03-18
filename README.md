@@ -10,10 +10,14 @@ This course considers the many linkages between public preferences and social po
 A primary project during the course is to replicate the work of Sides and Citrin (2007) and Emmenegger and Klemmensen (2013) using the ESS.
 
 ## WORKING WITH THE ESS
-The users will need to download the file [ESS1-7e01.dta](http://www.europeansocialsurvey.org/downloadwizard/) with all countries and variables selected to follow the course structure. The file is then cleaned using the Cleaning Appendix [cleaness.do](nbreznau/ESS-PPSP-course/edit/master/cleaness.do) mostly to reduce its size.
+The users will need to download the file [ESS1-7e01.dta](http://www.europeansocialsurvey.org/downloadwizard/) with all countries and variables selected and then extract and save this file with the same name in the folder C:/data/ in order to follow the course structure. The file is then cleaned using the coding in [cleaness.do](https://github.com/nbreznau/ESS-PPSP-course/blob/master/cleaness.do) mostly to reduce its size.
+
+The users also need the Quality of Government time series data file [qog_oecd_ts_jan18.dta](http://www.qogdata.pol.gu.se/data/qog_oecd_ts_jan18.dta) downloaded and saved in C:/data/ to engage in multilevel modeling.
+
+The users will find examples
 
 ## REPLICATION PROJECT
-The users will need to download the file
+The users will need to download the single-wave file ESS1
 ## LITERATURE:
 Bay, Ann-Helén and Axel West Pedersen. 2006. “The Limits of Social Solidarity: Basic Income, Immigration and the Legitimacy of the Universal Welfare State.” _Acta Sociologica_ 49(4):419–36.
 
