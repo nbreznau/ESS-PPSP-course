@@ -13,7 +13,7 @@ This course considers the many linkages between public preferences and social po
 A primary project during the course is to replicate the work of Sides and Citrin (2007) and Emmenegger and Klemmensen (2013) using the ESS.
 
 ## STATA PROJECT:
-Users can run all course code using my Stata project [essppsp.stpr](https://github.com/nbreznau/ESS-PPSP-course/blob/master/ess_ppsp.stpr), the project cotains the master file [essppsp.do] which executes all the do files described below and downloadable above. 
+Users can run all course code using my Stata project [essppsp.stpr](https://github.com/nbreznau/ESS-PPSP-course/blob/master/ess_ppsp.stpr), the project cotains the master file [essppsp.do](https://github.com/nbreznau/ESS-PPSP-course/blob/master/essppsp.do) which executes all the do files described below and downloadable above. 
 
 ### WORKING WITH THE ESS
 The users will need to download the file [ESS1-7e01.dta](http://www.europeansocialsurvey.org/downloadwizard/) with all countries and variables selected and then extract and save this file with the same name in the folder C:/data/ in order to follow the course structure. The file is then cleaned using the coding in [cleaness.do](https://github.com/nbreznau/ESS-PPSP-course/blob/master/cleaness.do) mostly to reduce its size.
