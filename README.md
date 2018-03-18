@@ -1,6 +1,9 @@
 # ESS-PPSP-course
 
-Repository for S Elective Seminar: Public Preferences and Social Policy: The Impacts of Immigration in Europe. [S] [1. PG] (FSS 2018)
+Repository for University of Mannheim Elective Seminar: 
+
+### Public Preferences and Social Policy: The Impacts of Immigration in Europe
+### _Spring Semester, 2018_
 
 ## DESCRIPTION:
 The number of foreign-born persons in Western Europe increased dramatically over the past three decades. Also in Eastern European countries, immigrants are increasing in numbers for the first time since transition. This produces many social outcomes that link to trust, voting, inequality and the role of the state. For example, having more foreigners in a country or region may reduce trust and increase intergroup conflicts. In Germany, for the first time since WWII, an anti-immigrant, populist party gained substantial political power. Also, many immigrants, in particular refugees or family reunification immigrants, face substantial labor market disadvantage and poverty. Many states were not equipped to deal with immigration and refugee asylum seeking on the scale that developed in recent history. All of these features of European societies affect public preferences and public opinion. At the same time, public preferences and opinion shapes how governments react to immigration.
@@ -17,7 +20,8 @@ The users also need the Quality of Government (QoG) OECD time series data file [
 Users can access the code for playing with and learning Stata and the ESS data as we've done in class via [ess_exercises.do](https://github.com/nbreznau/ESS-PPSP-course/blob/master/ess_exercises.do).
 
 ## REPLICATION PROJECT
-The users will need to download the single-wave file ESS1
+The users will need to download the single-wave file ESS1 and for expanding the project the ESS7.
+
 ## LITERATURE:
 Bay, Ann-Helén and Axel West Pedersen. 2006. “The Limits of Social Solidarity: Basic Income, Immigration and the Legitimacy of the Universal Welfare State.” _Acta Sociologica_ 49(4):419–36.
 
