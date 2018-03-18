@@ -12,9 +12,9 @@ A primary project during the course is to replicate the work of Sides and Citrin
 ## WORKING WITH THE ESS
 The users will need to download the file [ESS1-7e01.dta](http://www.europeansocialsurvey.org/downloadwizard/) with all countries and variables selected and then extract and save this file with the same name in the folder C:/data/ in order to follow the course structure. The file is then cleaned using the coding in [cleaness.do](https://github.com/nbreznau/ESS-PPSP-course/blob/master/cleaness.do) mostly to reduce its size.
 
-The users also need the Quality of Government time series data file [qog_oecd_ts_jan18.dta](http://www.qogdata.pol.gu.se/data/qog_oecd_ts_jan18.dta) downloaded and saved in C:/data/ to engage in multilevel modeling.
+The users also need the Quality of Government (QoG) OECD time series data file [qog_oecd_ts_jan18.dta](http://www.qogdata.pol.gu.se/data/qog_oecd_ts_jan18.dta) downloaded and saved in C:/data/ to engage in multilevel modeling. The ESS are QoG are merged using [merge_goqess.do](https://github.com/nbreznau/ESS-PPSP-course/blob/master/merge_essqog.do).
 
-The users will find examples
+Users can access the code for playing with and learning Stata and the ESS data as we've done in class via [ess_exercises.do](https://github.com/nbreznau/ESS-PPSP-course/blob/master/ess_exercises.do).
 
 ## REPLICATION PROJECT
 The users will need to download the single-wave file ESS1
