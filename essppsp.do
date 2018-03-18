@@ -4,5 +4,14 @@
 *Merge ESS and QOQ
 do merge_essgog
 
-*In-clas Examples
-do 
+*In-class Examples
+do ess_exercises
+
+*Replication
+
+***prep data
+do merge_ess1p7
+
+***Sides and Citrin (2007)
+do sides_citrin
+
