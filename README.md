@@ -12,17 +12,20 @@ This course considers the many linkages between public preferences and social po
 
 A primary project during the course is to replicate the work of Sides and Citrin (2007) and Emmenegger and Klemmensen (2013) using the ESS.
 
-## WORKING WITH THE ESS
+## STATA PROJECT
+Users can run all course code using my Stata project [essppsp.stpr], the project cotains the master file [essppsp.do] which executes all the do files described below and downloadable above. 
+
+### WORKING WITH THE ESS
 The users will need to download the file [ESS1-7e01.dta](http://www.europeansocialsurvey.org/downloadwizard/) with all countries and variables selected and then extract and save this file with the same name in the folder C:/data/ in order to follow the course structure. The file is then cleaned using the coding in [cleaness.do](https://github.com/nbreznau/ESS-PPSP-course/blob/master/cleaness.do) mostly to reduce its size.
 
 The users also need the Quality of Government (QoG) OECD time series data file [qog_oecd_ts_jan18.dta](http://www.qogdata.pol.gu.se/data/qog_oecd_ts_jan18.dta) downloaded and saved in C:/data/ to engage in multilevel modeling. The ESS are QoG are merged using [merge_goqess.do](https://github.com/nbreznau/ESS-PPSP-course/blob/master/merge_essqog.do).
 
 Users can access the code for playing with and learning Stata and the ESS data as we've done in class via [ess_exercises.do](https://github.com/nbreznau/ESS-PPSP-course/blob/master/ess_exercises.do).
 
-## REPLICATION PROJECT
-The users will need to download the single-wave file ESS1 and for expanding the project the ESS7. The the [merge_ess1p7.do](https://github.com/nbreznau/ESS-PPSP-course/blob/master/merge_ess1p7.do) file puts them together. 
+### REPLICATION PROJECT
+The users will need to download the single-wave file ESS1 and for expanding the project the ESS7. The [merge_ess1p7.do](https://github.com/nbreznau/ESS-PPSP-course/blob/master/merge_ess1p7.do) file puts them together. 
 
-The 
+The [sides_ditrin.do](https://github.com/nbreznau/ESS-PPSP-course/blob/master/sides_citrin.do) contains the replication code. _NOTE: This is a work in progress at this point, as we have not finished the replicaiton yet in the course!_
 
 ## LITERATURE:
 Bay, Ann-Helén and Axel West Pedersen. 2006. “The Limits of Social Solidarity: Basic Income, Immigration and the Legitimacy of the Universal Welfare State.” _Acta Sociologica_ 49(4):419–36.
