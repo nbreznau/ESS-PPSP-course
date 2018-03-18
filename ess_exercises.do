@@ -1,8 +1,12 @@
-*Playing around with the ESS data
+************************************************************************
+******************** Playing with ESS Data *****************************
+************************************************************************
+
 
 ****** A graph by country ordered from highest to lowest *******
 
 graph bar imbleco, over(cntry, sort(1)) nofill
+
 
 ****** Using the weights to get population estimates ******
 
