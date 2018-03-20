@@ -3,7 +3,7 @@
 Repository for University of Mannheim Elective Seminar: 
 
 ### Public Preferences and Social Policy: The Impacts of Immigration in Europe
-### _Spring Semester, 2018_
+#### Spring Semester, 2018
 
 ## DESCRIPTION:
 The number of foreign-born persons in Western Europe increased dramatically over the past three decades. Also in Eastern European countries, immigrants are increasing in numbers for the first time since transition. This produces many social outcomes that link to trust, voting, inequality and the role of the state. For example, having more foreigners in a country or region may reduce trust and increase intergroup conflicts. In Germany, for the first time since WWII, an anti-immigrant, populist party gained substantial political power. Also, many immigrants, in particular refugees or family reunification immigrants, face substantial labor market disadvantage and poverty. Many states were not equipped to deal with immigration and refugee asylum seeking on the scale that developed in recent history. All of these features of European societies affect public preferences and public opinion. At the same time, public preferences and opinion shapes how governments react to immigration.
@@ -13,17 +13,17 @@ This course considers the many linkages between public preferences and social po
 A primary project during the course is to replicate the work of Sides and Citrin (2007) and Emmenegger and Klemmensen (2013) using the ESS.
 
 ## STATA PROJECT:
-Users can run all course code using my Stata project [essppsp.stpr](https://github.com/nbreznau/ESS-PPSP-course/blob/master/ess_ppsp.stpr), the project cotains the master file [essppsp.do](https://github.com/nbreznau/ESS-PPSP-course/blob/master/essppsp.do) which executes all the do files described below and downloadable above. 
+I organize the code into a Stata project [essppsp.stpr](https://github.com/nbreznau/ESS-PPSP-course/blob/master/ess_ppsp.stpr) that  cotains the master file [essppsp.do](https://github.com/nbreznau/ESS-PPSP-course/blob/master/essppsp.do) which executes the do files in order as described below. 
 
 ### _Working with the ESS_
-The users will need to download the file [ESS1-7e01.dta](http://www.europeansocialsurvey.org/downloadwizard/) with all countries and variables selected and then extract and save this file with the same name in the folder C:/data/ in order to follow the course structure. The file is then cleaned using the coding in [cleaness.do](https://github.com/nbreznau/ESS-PPSP-course/blob/master/cleaness.do) mostly to reduce its size.
+The users will need to download the file [ESS1-7e01.dta](http://www.europeansocialsurvey.org/downloadwizard/) with all countries and variables selected and then extract and save this file. The file is then cleaned using the coding in [cleaness.do](https://github.com/nbreznau/ESS-PPSP-course/blob/master/cleaness.do) mostly to reduce its size. Students enrolled in the course can short-cut this step by downloading [ESS1-7e01.dta](https://ilias.uni-mannheim.de/goto.php?target=fold_784215&client_id=ILIAS) via Ilias which is already cleaned (i.e., they don't need to run the cleaness.do). This file need to be saved with the exact same name in the folder C:/data/ in order to follow the course code. 
 
 The users also need the Quality of Government (QoG) OECD time series data file [qog_oecd_ts_jan18.dta](http://www.qogdata.pol.gu.se/data/qog_oecd_ts_jan18.dta) downloaded and saved in C:/data/ to engage in multilevel modeling. The ESS are QoG are merged using [merge_goqess.do](https://github.com/nbreznau/ESS-PPSP-course/blob/master/merge_essqog.do).
 
-Users can access the code for playing with and learning Stata and the ESS data as we've done in class via [ess_exercises.do](https://github.com/nbreznau/ESS-PPSP-course/blob/master/ess_exercises.do).
+Users can access the code for 'playing with' and learning Stata and the ESS as we've done in class via [ess_exercises.do](https://github.com/nbreznau/ESS-PPSP-course/blob/master/ess_exercises.do).
 
 ### _Replication Project_
-The users will need to download the single-wave file ESS1 and for expanding the project the ESS7. The [merge_ess1p7.do](https://github.com/nbreznau/ESS-PPSP-course/blob/master/merge_ess1p7.do) file puts them together. 
+The users will need to download the single-wave file ESS1 and ESS7. Note that the replication only uses the ESS1, but the ESS7 repeats the ESS1 module, at least mostly, and provides the opportunity to not only replicate but also expand the original research. The [merge_ess1p7.do](https://github.com/nbreznau/ESS-PPSP-course/blob/master/merge_ess1p7.do) file puts them together. Students in the course may shortcut this step by downloading the file [ESS1and7.dta](https://ilias.uni-mannheim.de/goto.php?target=fold_784215&client_id=ILIAS).
 
 The [sides_ditrin.do](https://github.com/nbreznau/ESS-PPSP-course/blob/master/sides_citrin.do) contains the replication code. _NOTE: This is a work in progress at this point, as we have not finished the replicaiton yet in the course!_
 
