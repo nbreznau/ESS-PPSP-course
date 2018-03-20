@@ -98,9 +98,9 @@ table cntry [aweight=weight2] if ins==0 & year==2002, c(m DV1 m DV2)
 
 corr DV1 DV2 if ins==0 & year==2002
 
-*I get 0.5761
-*Why is the correlation different form Sides and Citrin's reported 0.53?
-
 
 *Income
 sum DV1 DV2 hinctnta if year==2002
+
+*NO OBSERVATIONS
+*Replicate everything except income!
