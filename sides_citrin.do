@@ -36,6 +36,11 @@ tab cntry, m
 
 recode essround (1=2002)(7=2014), gen(year)
 
+*Not used
+gen ins = 0
+replace ins = 1 if cntry=="IL"
+replace ins = 1 if cntry=="LT"
+
 *Merge QoG data
 
 sort ccode year
@@ -81,23 +86,21 @@ egen DV2 = rowmean(dv2_worse dv2_econ dv2_jobs dv2_take dv2_crime dv2_cultr)
 recode dv2_worse dv2_econ dv2_jobs dv2_take dv2_crime dv2_cultr (.6/1=3 "Positive")(.5=2 "Neutral")(0/.4=1 "Negative")(.=.)(*=0), gen(dv2_w3 dv2_e3 dv2_j3 dv2_t3 dv2_cr3 dv2_cu3) label(dv23)
 
 *ssc install tabm
-tabm dv2_w3-dv2_cu3, nof row
+tabm dv2_w3-dv2_cu3 if year==2002, nof row
 *with weights, did they use both weights?
-tabm dv2_w3-dv2_cu3 [aweight=weight2], nof row
+tabm dv2_w3-dv2_cu3 [aweight=weight2] if year==2002, nof row
 
 *Table 2
-gen ins = 0
-replace ins = 1 if cntry=="IL"
-replace ins = 1 if cntry=="LT"
 
-table cntry if ins==0, c(m DV1 m DV2)
-table cntry [aweight=weight2] if ins==0, c(m DV1 m DV2)
 
-corr DV1 DV2 if ins==0
+table cntry if ins==0 & year==2002, c(m DV1 m DV2)
+table cntry [aweight=weight2] if ins==0 & year==2002, c(m DV1 m DV2)
+
+corr DV1 DV2 if ins==0 & year==2002
 
 *I get 0.5761
 *Why is the correlation different form Sides and Citrin's reported 0.53?
 
 
 *Income
-sum DV1 DV2 hinctnta
+sum DV1 DV2 hinctnta if year==2002
