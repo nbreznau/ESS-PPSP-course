@@ -40,6 +40,7 @@ recode essround (1=2002)(7=2014), gen(year)
 gen ins = 0
 replace ins = 1 if cntry=="IL"
 replace ins = 1 if cntry=="LT"
+replace ins = 1 if ccode==233 | ccode==705 | ccode==440
 
 *Merge QoG data
 
@@ -102,5 +103,42 @@ corr DV1 DV2 if ins==0 & year==2002
 *Income
 sum DV1 DV2 hinctnta if year==2002
 
+*Education
+tab1 eduyrs
+
+*Demographic
+tab1 gndr agea
+
 *NO OBSERVATIONS
 *Replicate everything except income!
+
+*Economic Interests
+tab1 hincfel stfeco mainact
+
+*Cultural and National Identities
+tab1 pplstrd euftf 
+
+*Information about Immigration
+tab1 noimbro cpimpop
+recode ccode (40=12.5)(56=10.7)(203=4.4)(208=6.7)(246=2.5)(250=10.0)(276=11.1)(300=10.3)(348=2.9)(372=10.4)(380=3.9)(442=32.5)(528=10.1)(578=7.3)(616=2.0)(620=6.3)(724=5.3)(752=12.0)(756=21.6), gen(foreignb)
+label var foreignb "Foreign-Born OECD, Sides and Citrin source"
+
+clonevar sforeign = noimbro
+recode noimbro(777/999=.)
+
+***Impute subjective foreign-born
+tab1 eduyrs discpol
+
+*Contact with Immigrants
+tab1 dfegcf
+
+*Alienation
+tab1 ppltrst pplfair pplhlp stflife 
+
+*Political Awareness and Ideology
+tab1 discpol lrscale 
+
+*Immigrant Status
+tab1 ctzcntr brncntr livecnta blgetmg
+
+
