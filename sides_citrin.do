@@ -105,9 +105,16 @@ sum DV1 DV2 hinctnta if year==2002
 
 *Education
 tab1 eduyrs
+clonevar educ = eduyrs
+recode educ (77 88 99=.)(25/50=25)
 
 *Demographic
 tab1 gndr agea
+
+clonevar ageyr = agea
+recode ageyr (999=.) /*recode missing values*/
+recode ageyr (85/114=85) /*recode outliers*/
+hist ageyr, bin(12)
 
 *NO OBSERVATIONS
 *Replicate everything except income!
@@ -127,10 +134,32 @@ recode ccode (40=12.5)(56=10.7)(203=4.4)(208=6.7)(246=2.5)(250=10.0)(276=11.1)(3
 label var foreignb "Foreign-Born OECD, Sides and Citrin source"
 
 clonevar sforeign = noimbro
-recode noimbro(777/999=.)
+recode sforeign(777/999=.)
+
+label var sforeign "Subjective % Foreign-born"
+
+gen abs_misp = sforeign - foreignb
+
+
+table ccode if ins==0, c(m abs_misp) /*Check my work!*/
 
 ***Impute subjective foreign-born
-tab1 eduyrs discpol
+tab1 educ discpol
+recode discpol (1=7)(2=6)(3=5)(4=4)(5=3)(6=2)(7=1)(*=.), gen(dpolf)
+tab dpolf
+bysort ccode: pwcorr abs_misp educ dpolf
+
+gen abs_mispi = abs_misp
+
+*****Imputation loop, runs a regression in each country then replaces missings in our 'absolute misperceptions' variable
+foreach val in 40 56 203 208 246 250 276 300 348 372 380 442 528 578 616 620 724 752 756 826 {
+reg abs_misp educ dpolf if ccode==`val'
+predict abs_guess if ccode==`val'
+replace abs_mispi = abs_guess if ccode==`val' & abs_mispi==.
+drop abs_guess
+}
+
+
 
 *Contact with Immigrants
 tab1 dfegcf
@@ -139,9 +168,39 @@ tab1 dfegcf
 tab1 ppltrst pplfair pplhlp stflife 
 
 *Political Awareness and Ideology
-tab1 discpol lrscale 
+tab1 dpolf lrscale 
 
 *Immigrant Status
-tab1 ctzcntr brncntr livecnta blgetmg
+tab1 ctzcntr brncntr livecntr blgetmg facntr mocntr
+
+***Katharina reports to us that the German Mikro-Zensus codes 'second generation' as either both or one parent born abroad
+***Sides and Citrin do not seem to state how they coded it
+recode facntr mocntr (2=1)(1=0)(*=.), gen(faimm moimm)
+gen secgen = 0
+replace secgen = 1 if faimm==1 | moimm==1
+tab secgen
+label var secgen "Second Generation"
+
+recode livecntr (1 2 3 =0)(4 5 =1)(*=.), gen(more10)
+recode livecntr (1 2 3 =1)(4 5 =0)(*=.), gen(less10)
+
+gen citizen = 1 if ctzcntr==1
+replace citizen = 0 if ctzcntr==2
+gen nat_m10 = 0
+gen nat_l10 = 0
+gen non_m10 = 0
+gen non_l10 = 0
+replace nat_m10 = 1 if citizen==1 & more10==1
+replace nat_l10 = 1 if citizen==1 & less10==1
+replace non_m10 = 1 if citizen==0 & more10==1
+replace non_l10 = 1 if citizen==0 & less10==1
+
+label var nat_m10 "Naturalized (>10)"
+label var nat_l10 "Naturalized (<10)"
+label var non_m10 "Non-Citizen (>10)"
+label var non_l10 "Non-Citizen (>10)"
 
 
+
+*Recode All Variables 0 to 1
+tab1 ageyr 
