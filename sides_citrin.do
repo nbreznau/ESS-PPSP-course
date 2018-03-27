@@ -120,7 +120,10 @@ tab1 pplstrd euftf
 
 *Information about Immigration
 tab1 noimbro cpimpop
-recode ccode (40=12.5)(56=10.7)(203=4.4)(208=6.7)(246=2.5)(250=10.0)(276=11.1)(300=10.3)(348=2.9)(372=10.4)(380=3.9)(442=32.5)(528=10.1)(578=7.3)(616=2.0)(620=6.3)(724=5.3)(752=12.0)(756=21.6), gen(foreignb)
+recode ccode (40=12.5)(56=10.7)(203=4.4)(208=6.7)(246=2.5)(250=10.0)(276=11.1)(300=10.3)   ///
+(348=2.9)(372=10.4)(380=3.9)(442=32.5)(528=10.1)(578=7.3)(616=2.0)(620=6.3)(724=5.3)  /// 
+(752=12.0)(756=21.6)(826=8.3), gen(foreignb)  
+
 label var foreignb "Foreign-Born OECD, Sides and Citrin source"
 
 clonevar sforeign = noimbro
