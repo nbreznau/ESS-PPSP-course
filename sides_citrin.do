@@ -47,6 +47,8 @@ replace ins = 1 if ccode==233 | ccode==705 | ccode==440
 sort ccode year
 merge m:1 ccode year using "C:/data/qog_oecd_ts_jan18.dta"
 
+numlabel, add
+
 *Lithuania does not seem to be in the QoG data, pity. Maybe we can find the macro-data somewhere else.
 tab cntry if _merge==1
 
@@ -87,12 +89,15 @@ egen DV2 = rowmean(dv2_worse dv2_econ dv2_jobs dv2_take dv2_crime dv2_cultr)
 recode dv2_worse dv2_econ dv2_jobs dv2_take dv2_crime dv2_cultr (.6/1=3 "Positive")(.5=2 "Neutral")(0/.4=1 "Negative")(.=.)(*=0), gen(dv2_w3 dv2_e3 dv2_j3 dv2_t3 dv2_cr3 dv2_cu3) label(dv23)
 
 *ssc install tab_chi
+
+**without weights
 tabm dv2_w3-dv2_cu3 if year==2002, nof row
-*with weights, did they use both weights?
+
+**with weights, did they use both weights?
 tabm dv2_w3-dv2_cu3 [aweight=weight2] if year==2002, nof row
 
-*Table 2
 
+*Table 2
 
 table cntry if ins==0 & year==2002, c(m DV1 m DV2)
 table cntry [aweight=weight2] if ins==0 & year==2002, c(m DV1 m DV2)
@@ -101,16 +106,20 @@ sum DV1 DV2 if ins==0 & year==2002
 corr DV1 DV2 if ins==0 & year==2002
 
 
+**************************************
+*************  RECODES ***************
+**************************************
+
+
+*SOCIOECONOMIC AND DEMOGRAPHIC VARIABLES
+
 *Income
-sum DV1 DV2 hinctnta if year==2002
+***it is not in the data, don't worry about it for now
 
 *Education
 tab1 eduyrs
 clonevar educ = eduyrs
 recode educ (77 88 99=.)(25/50=25)
-
-
-
 
 *Demographic
 tab1 gndr agea
@@ -118,29 +127,43 @@ tab1 gndr agea
 clonevar ageyr = agea
 recode ageyr (999=.) /*recode missing values*/
 recode ageyr (85/114=85) /*recode outliers*/
-hist ageyr, bin(12)
+*hist ageyr, bin(12)
 
 *Employment
-***Its not clear what varaibles they used
-****could be 'mnactic' or individual variables, e.g., 'unempla'
+**Its not clear what varaibles they used
+***could be 'mnactic' or individual variables, e.g., 'unempla'
 recode mnactic (3 4=1)(*=0), gen(unemp)
 recode mnactic (6=1)(*=0), gen(retired)
 recode mnactic (2=1)(*=0), gen(student)
-****Also, is house work more like paid work or being reitred?
 
+***Also, is house work more like paid work or being reitred?
 ****We decided in the lab to make young houseworkers into 'students'
 ****and old houseworkers into 'retirees'
 replace retired = 1 if ageyr>64 & mnactic==8
 replace student = 1 if ageyr<65 & mnactic==8
 
-*NO OBSERVATIONS
-*Replicate everything except income!
 
-*Economic Interests
-tab1 hincfel stfeco mainact
+*Satisfaction with variables
+tab1 hincfel stfeco
+recode hincfel (1=1)(2=.67)(3=.33)(4=0)(8=.5)(7 9=.), gen(satfin)
+recode stfeco (77 88 99=.), gen(satecon)
+replace satecon = satecon/10
+label var satfin "Satisfied with personal finances"
+label var satecon "Satisfied with economy"
 
-*Cultural and National Identities
-tab1 pplstrd euftf 
+*Cultural and national identities
+tab1 dclenv dclcrm dclagr dcldef dclwlfr dclaid dclmig dclintr
+recode dclenv dclcrm dclagr dcldef dclwlfr dclaid dclmig dclintr (2 1=1)(*=0), gen(i1 i2 i3 i4 i5 i6 i7 i8)
+tab1 i1-i8
+egen natu = rowtotal(i1-i8)
+tab natu
+replace natu=((natu-8)/-8)
+tab natu
+label var natu "Preference for national authority"
+
+recode euftf (1=1)(2=.75)(3 8=.5)(4=.25)(5=0)(*=.), gen(cultu)
+label var cultu "Prefer cultural unity"
+
 
 *Information about Immigration
 tab1 noimbro cpimpop
@@ -186,9 +209,20 @@ drop abs_guess
 
 *Contact with Immigrants
 tab1 dfegcf
+recode dfegcf (1=1)(2 8=.5)(3=0)(*=.), gen(contact)
+label var contact "Have immigrant friends"
+
 
 *Alienation
 tab1 ppltrst pplfair pplhlp stflife 
+recode ppltrst pplfair pplhlp (77 99=.)(88=5), gen(st1 st2 st3)
+egen strust = rowmean(st1 st2 st3)
+label var strust "Social trust"
+recode stflife (88=5)(77 99=.), gen(lifesat)
+replace lifesat=lifesat/10
+label var lifesat "Life satisfaction"
+
+
 
 *Political Awareness and Ideology
 tab1 dpolf lrscale
@@ -208,7 +242,8 @@ gen `v'_1 = (`v' - r(min))/(r(max) - r(min))
 pwcorr right righta rightb
 *****they are all identical!
 
-
+label var dpolf "Frequency of political discussion"
+label var right "Conservatism"
 
 *Immigrant Status
 tab1 ctzcntr brncntr livecntr blgetmg facntr mocntr
