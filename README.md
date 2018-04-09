@@ -23,9 +23,13 @@ The users also need the Quality of Government (QoG) OECD time series data file [
 Users can access the code for 'playing with' and learning Stata and the ESS as we've done in class via [ess_exercises.do](https://github.com/nbreznau/ESS-PPSP-course/blob/master/ess_exercises.do).
 
 ### _Replication Project_
-The users will need to download the single-wave file ESS1 and ESS7. Note that the replication only uses the ESS1, but the ESS7 repeats the ESS1 module, at least mostly, and provides the opportunity to not only replicate but also expand the original research. The [merge_ess1p7.do](https://github.com/nbreznau/ESS-PPSP-course/blob/master/merge_ess1p7.do) file puts them together. Students in the course may shortcut this step by downloading the file [ESS1and7.dta](https://ilias.uni-mannheim.de/goto.php?target=fold_784215&client_id=ILIAS) or the older version ESS1and7v10.dta which is readable on earlier versions of Stata.
+The users will need to download the single-wave file ESS1 and ESS7. Note that the replication only uses the ESS1, but the ESS7 repeats the ESS1 module, at least mostly, and provides the opportunity to not only replicate but also expand the original research. The [merge_ess1p7.do](https://github.com/nbreznau/ESS-PPSP-course/blob/master/merge_ess1p7.do) file puts them together. Students in the course may shortcut this step by downloading the file [ESS1and7.dta](https://ilias.uni-mannheim.de/goto.php?target=fold_784215&client_id=ILIAS) or the older version ESS1and7v10.dta which is readable with earlier versions of Stata.
 
-The [sides_ditrin.do](https://github.com/nbreznau/ESS-PPSP-course/blob/master/sides_citrin.do) contains the replication code. _NOTE: This is a work in progress at this point, as we have not finished the replicaiton yet in the course!_
+Thanks to Sides and Citrin making available their replication files, we are able to merge in the net household income variable from the ESS version 5_f1. This is the same variable they analyzed, but is no longer distributed with the ESS because of comprability problems. The datafile [hinc_merge.dta](https://github.com/nbreznau/ESS-PPSP-course/blob/master/hinc_merge.dta) provides this variable. 
+
+Interestingly, the respondent ID numbers changed for all of France since the release of version 5_f1, such that it is impossible to merge the them 1:1. Therefore, I simply drop the newer version of the French data and replace it with the original data provided by Sides and Citrin using the file [france_merge.dta](https://github.com/nbreznau/ESS-PPSP-course/blob/master/france_merge.dta).
+
+The [sides_ditrin.do](https://github.com/nbreznau/ESS-PPSP-course/blob/master/sides_citrin.do) contains the replication code including the fix for the income variable and the France ID variable. _NOTE: This is a work in progress at this point, as we have not finished the replicaiton yet in the course!_
 
 ## LITERATURE:
 Bay, Ann-Helén and Axel West Pedersen. 2006. “The Limits of Social Solidarity: Basic Income, Immigration and the Legitimacy of the Universal Welfare State.” _Acta Sociologica_ 49(4):419–36.
