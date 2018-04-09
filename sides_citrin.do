@@ -36,23 +36,38 @@ tab cntry, m
 
 recode essround (1=2002)(7=2014), gen(year)
 
-*Not used
-gen ins = 0
-replace ins = 1 if cntry=="IL"
-replace ins = 1 if cntry=="LT"
-replace ins = 1 if ccode==233 | ccode==705 | ccode==440
+*Merge income from ESSe05_f1.dta, income is not in the newer versions of the data
+*probably due to problems with measurement of comprability
+***drop wave7 for now
+drop if year!=2002
+sort cntry idno
 
+merge 1:1 cntry idno using "C:/data/hinc_merge.dta" 
+drop if cntry=="FR"
+drop _merge*
+
+*The id numbers in France changed between editions of the ESS for some reason
+***This file brings back the orgiinal version of French data from Sides and Citrin
+append using "C:/data/france_merge.dta"
+***Note that France has a different coding here for its income variable from 1 to 9
+***Other countries seem to be at parity
+replace ccode=250 if cntry=="FR"
+replace year=2002
 *Merge QoG data
 
-sort ccode year
+sort ccode
 merge m:1 ccode year using "C:/data/qog_oecd_ts_jan18.dta"
+***Lithuania does not seem to be in the QoG data, pity. Maybe we can find the macro-data somewhere else.
+tab cntry if _merge==1
+drop if _merge==2
+
+drop _merge*
+
+
 
 numlabel, add
 
-*Lithuania does not seem to be in the QoG data, pity. Maybe we can find the macro-data somewhere else.
-tab cntry if _merge==1
 
-drop if _merge==2
 
 *weights
 gen weight2=pspwght*pweight
@@ -94,13 +109,13 @@ recode dv2_worse dv2_econ dv2_jobs dv2_take dv2_crime dv2_cultr (.6/1=3 "Positiv
 tabm dv2_w3-dv2_cu3 if year==2002, nof row
 
 **with weights, did they use both weights?
-tabm dv2_w3-dv2_cu3 [aweight=weight2] if year==2002, nof row
+tabm dv2_w3-dv2_cu3 [aweight=weight2], nof row
 
 
 *Table 2
 
-table cntry if ins==0 & year==2002, c(m DV1 m DV2)
-table cntry [aweight=weight2] if ins==0 & year==2002, c(m DV1 m DV2)
+table cntry, c(m DV1 m DV2)
+table cntry [aweight=weight2], c(m DV1 m DV2)
 
 sum DV1 DV2 if ins==0 & year==2002
 corr DV1 DV2 if ins==0 & year==2002
@@ -114,7 +129,13 @@ corr DV1 DV2 if ins==0 & year==2002
 *SOCIOECONOMIC AND DEMOGRAPHIC VARIABLES
 
 *Income
-***it is not in the data, don't worry about it for now
+
+***borrowed this code from Sides and Citrin
+generate income=hinctnt
+gen incomeimp=income
+egen tincome=mean(income), by(ccode)
+replace incomeimp=tincome if hinctnt==. /*replace missing data with country-level mean*/
+replace incomeimp=(incomeimp-1)/11
 
 *Education
 tab1 eduyrs
@@ -123,6 +144,8 @@ recode educ (77 88 99=.)(25/50=25)
 
 *Demographic
 tab1 gndr agea
+
+recode gndr (2=1)(1=0)(*=.), gen(female)
 
 clonevar ageyr = agea
 recode ageyr (999=.) /*recode missing values*/
@@ -161,7 +184,7 @@ replace natu=((natu-8)/-8)
 tab natu
 label var natu "Preference for national authority"
 
-recode euftf (1=1)(2=.75)(3 8=.5)(4=.25)(5=0)(*=.), gen(cultu)
+recode pplstrd (1=1)(2=.75)(3 8=.5)(4=.25)(5=0)(*=.), gen(cultu)
 label var cultu "Prefer cultural unity"
 
 
@@ -205,11 +228,12 @@ replace abs_mispi = abs_guess if ccode==`val' & abs_mispi==.
 drop abs_guess
 }
 
-
+label var abs_mispi "Absolute misperception"
 
 *Contact with Immigrants
 tab1 dfegcf
-recode dfegcf (1=1)(2 8=.5)(3=0)(*=.), gen(contact)
+recode dfegcf imgfrnd (1=1)(2 8=.5)(3=0)(*=.), gen(contact c2)
+replace contact=c2 if contact==.
 label var contact "Have immigrant friends"
 
 
@@ -275,18 +299,50 @@ label var nat_l10 "Naturalized (<10)"
 label var non_m10 "Non-Citizen (>10)"
 label var non_l10 "Non-Citizen (>10)"
 
+recode blgetmg (1=1)(*=0), gen(minority)
+label var minority "Self-identified minority"
 
 
-*Recode All Variables 0 to 1
-tab1 ageyr 
+**************************************************
+******************* ANALYSES *********************
+**************************************************
 
-*Test run to create figure 2
-reg DV2 unemp student retired c.compest##c.abs_mispi if ins==0
+
+*sum satfin satecon unemp student retired cultu natu compest abs_mispi contact strust lifesat dpolf right minority secgen nat_m10 nat_l10 non_m10 non_l10
+
+
+*Recode all remaining variables 0 to 1
+
+foreach v of var abs_mispi strust dpolf educ ageyr{
+su `v', meanonly
+gen `v'_1 = (`v' - r(min))/(r(max) - r(min))
+}
+
+label var abs_mispi_1 "Absolute misperception"
+label var strust_1 "Social trust"
+label var dpolf_1 "Frequency of political discussion"
+
+*Descriptives
+sum satfin satecon unemp student retired cultu natu compest abs_mispi_1 contact strust_1 lifesat dpolf_1 right minority secgen nat_m10 nat_l10 non_m10 non_l10 educ_1 ageyr_1 female
+
+
+*******************************
+********* REGRESSIONS *********
+*******************************
+
+*DV1 - Percieved negative consequences
+label var DV1 "Percieved negative consequences"
+
+reg DV1 satfin satecon unemp student retired cultu natu c.compest##c.abs_mispi_1 contact strust_1 lifesat c.dpolf_1##c.right minority secgen nat_m10 nat_l10 non_m10 non_l10 educ_1 ageyr_1 female i.ccode, cluster(ccode)
 
 *Like figure 2
-margins, dydx(abs_mispi) at(compest=(0(.25)1))
+margins, dydx(abs_mispi_1) at(compest=(0(.25)1))
 marginsplot
 
 *alternative (notice the tiny marginal differences)
-margins, at(compest=(0(.25)1) abs_mispi=(-5(5)25))
+margins, at(compest=(0(.25)1) abs_mispi_1=(0(.2)1))
 marginsplot
+
+*DV2 - Prefer lower levels
+label var DV2 "Prefer lower levels"
+reg DV2 satfin satecon unemp student retired cultu natu c.compest##c.abs_mispi_1 contact strust_1 lifesat c.dpolf_1##c.right minority secgen nat_m10 nat_l10 non_m10 non_l10 educ_1 ageyr_1 female i.ccode, cluster(ccode)
