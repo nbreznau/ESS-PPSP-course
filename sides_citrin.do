@@ -40,6 +40,7 @@ recode essround (1=2002)(7=2014), gen(year)
 *probably due to problems with measurement of comprability
 ***drop wave7 for now
 drop if year!=2002
+drop hinctnt
 sort cntry idno
 
 merge 1:1 cntry idno using "C:/data/hinc_merge.dta" 
@@ -117,8 +118,8 @@ tabm dv2_w3-dv2_cu3 [aweight=weight2], nof row
 table cntry, c(m DV1 m DV2)
 table cntry [aweight=weight2], c(m DV1 m DV2)
 
-sum DV1 DV2 if ins==0 & year==2002
-corr DV1 DV2 if ins==0 & year==2002
+sum DV1 DV2
+corr DV1 DV2
 
 
 **************************************
@@ -210,7 +211,7 @@ label var sforeign "Subjective % Foreign-born"
 gen abs_misp = sforeign - foreignb
 
 
-table ccode if ins==0, c(m abs_misp) /*Check my work!*/
+table ccode, c(m abs_misp) /*Check my work!*/
 
 ***Impute subjective foreign-born
 tab1 educ discpol
@@ -313,7 +314,7 @@ label var minority "Self-identified minority"
 
 *Recode all remaining variables 0 to 1
 
-foreach v of var abs_mispi strust dpolf educ ageyr{
+foreach v of var abs_mispi strust dpolf educ ageyr incomeimp{
 su `v', meanonly
 gen `v'_1 = (`v' - r(min))/(r(max) - r(min))
 }
@@ -323,7 +324,7 @@ label var strust_1 "Social trust"
 label var dpolf_1 "Frequency of political discussion"
 
 *Descriptives
-sum satfin satecon unemp student retired cultu natu compest abs_mispi_1 contact strust_1 lifesat dpolf_1 right minority secgen nat_m10 nat_l10 non_m10 non_l10 educ_1 ageyr_1 female
+sum satfin satecon incomeimp_1 unemp student retired cultu natu compest abs_mispi_1 contact strust_1 lifesat dpolf_1 right minority secgen nat_m10 nat_l10 non_m10 non_l10 educ_1 ageyr_1 female
 
 
 *******************************
@@ -333,7 +334,7 @@ sum satfin satecon unemp student retired cultu natu compest abs_mispi_1 contact 
 *DV1 - Percieved negative consequences
 label var DV1 "Percieved negative consequences"
 
-reg DV1 satfin satecon unemp student retired cultu natu c.compest##c.abs_mispi_1 contact strust_1 lifesat c.dpolf_1##c.right minority secgen nat_m10 nat_l10 non_m10 non_l10 educ_1 ageyr_1 female i.ccode, cluster(ccode)
+reg DV1 satfin satecon incomeimp unemp student retired cultu natu c.compest##c.abs_mispi_1 contact strust_1 lifesat c.dpolf_1##c.right minority secgen nat_m10 nat_l10 non_m10 non_l10 educ_1 ageyr_1 female i.ccode, cluster(ccode)
 
 *Like figure 2
 margins, dydx(abs_mispi_1) at(compest=(0(.25)1))
@@ -345,4 +346,4 @@ marginsplot
 
 *DV2 - Prefer lower levels
 label var DV2 "Prefer lower levels"
-reg DV2 satfin satecon unemp student retired cultu natu c.compest##c.abs_mispi_1 contact strust_1 lifesat c.dpolf_1##c.right minority secgen nat_m10 nat_l10 non_m10 non_l10 educ_1 ageyr_1 female i.ccode, cluster(ccode)
+reg DV2 satfin satecon incomeimp unemp student retired cultu natu c.compest##c.abs_mispi_1 contact strust_1 lifesat c.dpolf_1##c.right minority secgen nat_m10 nat_l10 non_m10 non_l10 educ_1 ageyr_1 female i.ccode, cluster(ccode)
