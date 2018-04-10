@@ -351,7 +351,7 @@ label var DV2 "Prefer lower levels"
 reg DV2 satfin satecon incomeimp_1 unemp student retired cultu natu c.compest##c.abs_mispi_1 contact strust_1 lifesat c.dpolf_1##c.right minority secgen nat_m10 nat_l10 non_m10 non_l10 educ_1 ageyr_1 female i.ccode, cluster(ccode)
 
 *Like figure 3
-margins, dydx(abs_mispi_1) at(compest=(0(.25)1)) atmeans
+margins, dydx(right) at(dpolf_1=(0(.25)1))
 marginsplot
 
 *what happens without the imputation
@@ -359,12 +359,12 @@ reg DV1 satfin satecon incomeimp_1 unemp student retired cultu natu c.compest##c
 *reg DV1 c.compest##c.abs_mispi_1 i.ccode, cluster(ccode)
 
 *Like figure 2
-margins, dydx(abs_mispi_1) at(compest=(0(.25)1))
+margins if sforeign!=., dydx(abs_mispi_1) at(compest=(0(.25)1))
 marginsplot
 
 
 reg DV2 satfin satecon incomeimp_1 unemp student retired cultu natu c.compest##c.abs_mispi_1 contact strust_1 lifesat c.dpolf_1##c.right minority secgen nat_m10 nat_l10 non_m10 non_l10 educ_1 ageyr_1 female i.ccode if sforeign!=., cluster(ccode)
 
 *Like figure 3
-margins, dydx(abs_mispi_1) at(compest=(0(.25)1))
+margins if sforeign!=., dydx(right) at(dpolf_1=(0(.25)1))
 marginsplot
