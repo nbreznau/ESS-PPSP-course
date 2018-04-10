@@ -338,7 +338,7 @@ label var DV1 "Percieved negative consequences"
 reg DV1 satfin satecon incomeimp_1 unemp student retired cultu natu c.compest##c.abs_mispi_1 contact strust_1 lifesat c.dpolf_1##c.right minority secgen nat_m10 nat_l10 non_m10 non_l10 educ_1 ageyr_1 female i.ccode, cluster(ccode)
 *reg DV1 c.compest##c.abs_mispi_1 i.ccode, cluster(ccode)
 
-*Like figure 2, confidence intervals are too large, why?
+*Like figure 2
 margins, dydx(abs_mispi_1) at(compest=(0(.25)1))
 marginsplot
 
@@ -355,7 +355,15 @@ margins, dydx(abs_mispi_1) at(compest=(0(.25)1)) atmeans
 marginsplot
 
 *what happens without the imputation
-reg DV2 satfin satecon incomeimp_1 unemp student retired cultu natu c.compest##c.abs_mispi_1 contact strust_1 lifesat c.dpolf_1##c.right minority secgen nat_m10 nat_l10 non_m10 non_l10 educ_1 ageyr_1 female i.ccode if noimbro!=., cluster(ccode)
+reg DV1 satfin satecon incomeimp_1 unemp student retired cultu natu c.compest##c.abs_mispi_1 contact strust_1 lifesat c.dpolf_1##c.right minority secgen nat_m10 nat_l10 non_m10 non_l10 educ_1 ageyr_1 female i.ccode if sforeign!=., cluster(ccode)
+*reg DV1 c.compest##c.abs_mispi_1 i.ccode, cluster(ccode)
+
+*Like figure 2
+margins, dydx(abs_mispi_1) at(compest=(0(.25)1))
+marginsplot
+
+
+reg DV2 satfin satecon incomeimp_1 unemp student retired cultu natu c.compest##c.abs_mispi_1 contact strust_1 lifesat c.dpolf_1##c.right minority secgen nat_m10 nat_l10 non_m10 non_l10 educ_1 ageyr_1 female i.ccode if sforeign!=., cluster(ccode)
 
 *Like figure 3
 margins, dydx(abs_mispi_1) at(compest=(0(.25)1))
