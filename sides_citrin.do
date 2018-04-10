@@ -323,6 +323,7 @@ label var abs_mispi_1 "Absolute misperception"
 label var strust_1 "Social trust"
 label var dpolf_1 "Frequency of political discussion"
 
+drop if ccode==705
 *Descriptives
 sum satfin satecon incomeimp_1 unemp student retired cultu natu compest abs_mispi_1 contact strust_1 lifesat dpolf_1 right minority secgen nat_m10 nat_l10 non_m10 non_l10 educ_1 ageyr_1 female
 
@@ -334,9 +335,10 @@ sum satfin satecon incomeimp_1 unemp student retired cultu natu compest abs_misp
 *DV1 - Percieved negative consequences
 label var DV1 "Percieved negative consequences"
 
-reg DV1 satfin satecon incomeimp unemp student retired cultu natu c.compest##c.abs_mispi_1 contact strust_1 lifesat c.dpolf_1##c.right minority secgen nat_m10 nat_l10 non_m10 non_l10 educ_1 ageyr_1 female i.ccode, cluster(ccode)
+reg DV1 satfin satecon incomeimp_1 unemp student retired cultu natu c.compest##c.abs_mispi_1 contact strust_1 lifesat c.dpolf_1##c.right minority secgen nat_m10 nat_l10 non_m10 non_l10 educ_1 ageyr_1 female i.ccode, cluster(ccode)
+*reg DV1 c.compest##c.abs_mispi_1 i.ccode, cluster(ccode)
 
-*Like figure 2
+*Like figure 2, confidence intervals are too large, why?
 margins, dydx(abs_mispi_1) at(compest=(0(.25)1))
 marginsplot
 
@@ -346,4 +348,15 @@ marginsplot
 
 *DV2 - Prefer lower levels
 label var DV2 "Prefer lower levels"
-reg DV2 satfin satecon incomeimp unemp student retired cultu natu c.compest##c.abs_mispi_1 contact strust_1 lifesat c.dpolf_1##c.right minority secgen nat_m10 nat_l10 non_m10 non_l10 educ_1 ageyr_1 female i.ccode, cluster(ccode)
+reg DV2 satfin satecon incomeimp_1 unemp student retired cultu natu c.compest##c.abs_mispi_1 contact strust_1 lifesat c.dpolf_1##c.right minority secgen nat_m10 nat_l10 non_m10 non_l10 educ_1 ageyr_1 female i.ccode, cluster(ccode)
+
+*Like figure 3
+margins, dydx(abs_mispi_1) at(compest=(0(.25)1)) atmeans
+marginsplot
+
+*what happens without the imputation
+reg DV2 satfin satecon incomeimp_1 unemp student retired cultu natu c.compest##c.abs_mispi_1 contact strust_1 lifesat c.dpolf_1##c.right minority secgen nat_m10 nat_l10 non_m10 non_l10 educ_1 ageyr_1 female i.ccode if noimbro!=., cluster(ccode)
+
+*Like figure 3
+margins, dydx(abs_mispi_1) at(compest=(0(.25)1))
+marginsplot
