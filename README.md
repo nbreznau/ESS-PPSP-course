@@ -32,7 +32,7 @@ Interestingly, the respondent ID numbers changed for all of France since the rel
 The [sides_ditrin.do](https://github.com/nbreznau/ESS-PPSP-course/blob/master/sides_citrin.do) contains the replication code including the fix for the income variable and the France ID variable. _NOTE: This is a work in progress at this point, as we have not finished the replicaiton yet in the course!_
 
 ### _Missing Data_ ###
-The users may find it easier to work with the ESS data when all the missing data are coded as "." rather than a value. To code all ESS variables in this way, the ESS provides the file [ESS_miss.do](https://github.com/nbreznau/ESS-PPSP-course/blob/master/ESS_miss.do).
+The users may find it easier to work with the ESS data when all the missing data are coded as "." rather than a value. To code all ESS variables in this way but retain the _type_ of missing (e.g., ".a", ".b", ".c"), the ESS provides the file [ESS_miss.do](https://github.com/nbreznau/ESS-PPSP-course/blob/master/ESS_miss.do). However, if the users want to code all missings simply to ".", for example those interested in overall non-response rates, then I have modified the ESS missing file into [ESS_missNOT.do](https://github.com/nbreznau/ESS-PPSP-course/blob/master/ESS_missNOT.do).
 
 ## LITERATURE:
 Bay, Ann-Helén and Axel West Pedersen. 2006. “The Limits of Social Solidarity: Basic Income, Immigration and the Legitimacy of the Universal Welfare State.” _Acta Sociologica_ 49(4):419–36.
